@@ -11,6 +11,14 @@ export class Question {
       }
     )
       .then((response) => response.json())
-      .then((response) => console.log(response));
+      .then((response) => {
+        question.id = response.name;
+        return question;
+      })
+      .then(addToLocalStorage);
   }
+}
+
+function addToLocalStorage(question) {
+  localStorage.setItem("question", JSON.stringify(question));
 }
