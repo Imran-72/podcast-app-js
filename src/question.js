@@ -20,5 +20,11 @@ export class Question {
 }
 
 function addToLocalStorage(question) {
-  localStorage.setItem("question", JSON.stringify(question));
+  const all = getQuestionsFromLocalStorage();
+  all.push(question);
+  localStorage.setItem("question", JSON.stringify(all));
+}
+
+function getQuestionsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("question") || "[]");
 }
